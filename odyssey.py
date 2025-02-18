@@ -97,24 +97,7 @@ else:
         - Study with GPT: <a href="https://jmichikoleo.github.io/gpt/" target="_blank">Coming Soon</a>
     """, unsafe_allow_html=True)
     
-    # File Upload UI
-    uploaded_file = st.file_uploader("Upload a PDF file", type=["pdf"])
-    if uploaded_file:
-        file_path = os.path.join(UPLOAD_DIR, uploaded_file.name)
-        with open(file_path, "wb") as f:
-            f.write(uploaded_file.getbuffer())
-        st.success(f"File '{uploaded_file.name}' uploaded successfully!")
 
-    # Display uploaded files
-    uploaded_files = os.listdir(UPLOAD_DIR)
-    if uploaded_files:
-        for file_name in uploaded_files:
-            file_path = os.path.join(UPLOAD_DIR, file_name)
-            st.write(f"📂 {file_name}")
-            with open(file_path, "rb") as file_data:
-                st.download_button(label=f"Download {file_name}", data=file_data, file_name=file_name, mime="application/pdf")
-    else:
-        st.info("No files uploaded yet.")
 
 # Close DB connection on exit
 import atexit
